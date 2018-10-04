@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bill.dao.streamMoney.StreamMoneyMapper" >
+
+
+    <select id="getBill" resultType="com.bill.pojo.StreamMoney">
+         select
+         *
+         from stream_money;
+    </select>
+
+    <insert id="addBill" parameterType="com.bill.pojo.StreamMoney">
+        INSERT INTO `mybill`.`stream_money` (`id`,`happen_time`, `in_out_flag`, `something_do`, `category`, `money`, `create_time`)
+        VALUES
+            (#{id,jdbcType=VARCHAR},
+            #{happenTime,jdbcType=DATE},
+            #{inOutFlag,jdbcType=VARCHAR},
+            #{somethingDo,jdbcType=VARCHAR},
+            #{category,jdbcType=VARCHAR},
+            #{money,jdbcType=DECIMAL},
+            #{createTime,jdbcType=VARCHAR});
+    </insert>
+
+</mapper>

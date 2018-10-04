@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bill.dao.category.CategoryMapper">
+
+    <select id="getAllCateGory" resultType="com.bill.pojo.Category">
+        select category_code,rate from category order by rate desc;
+    </select>
+
+    <insert id="addCategory" parameterType="com.bill.dao.category.CategoryMapper">
+        INSERT INTO `mybill`.`category` ( `id`, `category_code`, `category_name`, `in_out_flag`,`rate` )
+        VALUES
+	    (#{id},#{categoryCode},#{categoryName},#{inOutFlag},#{rate});
+    </insert>
+
+    <update id="updateRate" parameterType="java.lang.String" >
+        update `mybill`.`category` set rate = #{score} where category_code = #{categoryCode};
+    </update>
+
+</mapper>
