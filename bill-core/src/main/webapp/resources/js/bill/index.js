@@ -18,7 +18,7 @@ function checkForm() {
     } else if (category == null || category == "") {
         return false;
     }
-    return true;//测试提交
+    return true;
 }
 
 function submitBillForm() {
