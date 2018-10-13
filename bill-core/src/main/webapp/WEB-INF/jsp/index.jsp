@@ -61,7 +61,6 @@
         </form>
     </div>
     <div class="col-md-2" style="margin-top: 30px;margin-left: 10px" >
-        <img src="${pagecontext.request.getcontextpath}/resources/img/labixiaoxin.jpg">
     </div>
     <div class="col-md-3"></div>
 </div>
