@@ -419,6 +419,22 @@ public class RedisUtils {
     }
 
     /**
+     * 获取zset的大小
+     */
+    public static Long zScard(String key){
+        ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
+        return zset.zCard(key);
+    }
+
+    /**
+     * 获取zset某个元素的分数值
+     */
+    public static Double zScore(String mainKey,String key){
+        ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
+        return zset.score(mainKey,key);
+    }
+
+    /**
      * 判断是否为set的元素
      */
     public static boolean isMember(String mainKey,String itemKey){
@@ -427,12 +443,14 @@ public class RedisUtils {
     }
 
     /**
-     * 判断set 的大小
+     * 判断set的大小
      */
     public static Long getSetSize(String mainKey){
         SetOperations<String, Object> zet = redisTemplate.opsForSet();
         return zet.size(mainKey);
+
     }
+
     //===============================list=================================
 
     /**

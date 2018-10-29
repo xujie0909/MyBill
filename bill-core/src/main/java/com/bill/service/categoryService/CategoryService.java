@@ -1,4 +1,4 @@
-package com.bill.service;
+package com.bill.service.categoryService;
 
 import com.bill.pojo.Category;
 

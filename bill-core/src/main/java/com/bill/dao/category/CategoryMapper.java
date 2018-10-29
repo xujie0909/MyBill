@@ -9,7 +9,7 @@ public interface CategoryMapper {
     void addCategory(Category category);
 
     //更新频率
-    void updateRate(String categoryCode,Long score);
+    void updateRate(Category category);
 
     //获取所有分类信息
     List<Category> getAllCateGory();

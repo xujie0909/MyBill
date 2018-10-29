@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bill.dao.streamMoney.StreamMoneyMapper" >
+<mapper namespace="com.bill.dao.streamMoney.StreamMoneyMapper">
 
 
     <select id="getBill" resultType="com.bill.pojo.StreamMoney">
@@ -10,7 +10,7 @@
     </select>
 
     <insert id="addBill" parameterType="com.bill.pojo.StreamMoney">
-        INSERT INTO `mybill`.`stream_money` (`id`,`happen_time`, `in_out_flag`, `something_do`, `category`, `money`, `create_time`)
+        INSERT INTO `mybill`.`stream_money` (`id`,`happen_time`, `in_out_flag`, `something_do`, `category`, `money`,`pay_type`,`create_time`)
         VALUES
             (#{id,jdbcType=VARCHAR},
             #{happenTime,jdbcType=DATE},
@@ -18,7 +18,21 @@
             #{somethingDo,jdbcType=VARCHAR},
             #{category,jdbcType=VARCHAR},
             #{money,jdbcType=DECIMAL},
+            #{payType,jdbcType=VARCHAR},
             #{createTime,jdbcType=VARCHAR});
     </insert>
 
+    <update id="updateBill" parameterType="com.bill.pojo.StreamMoney">
+        UPDATE `mybill`.`stream_money`
+        SET
+        `happen_time` = #{happenTime,jdbcType=DATE},
+        `in_out_flag` = #{inOutFlag,jdbcType=VARCHAR},
+        `something_do` = #{somethingDo,jdbcType=VARCHAR},
+        `category` = #{category,jdbcType=VARCHAR},
+        `money` = #{money,jdbcType=DECIMAL},
+        `pay_type` = #{payType,jdbcType=VARCHAR},
+        `create_time` = #{createTime,jdbcType=VARCHAR}
+        WHERE
+	    `id` = #{id,jdbcType=VARCHAR};
+    </update>
 </mapper>

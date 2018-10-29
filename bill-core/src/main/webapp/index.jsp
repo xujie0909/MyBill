@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="resources/css/bootstrap/bootstrap.min.css"/>
     <script src="resources/js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="resources/js/bootstrap/bootstrap.bundle.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="resources/js/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/js/bootstrap/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
 <body>

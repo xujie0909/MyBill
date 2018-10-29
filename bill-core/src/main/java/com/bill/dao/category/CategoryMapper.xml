@@ -12,8 +12,8 @@
 	    (#{id},#{categoryCode},#{categoryName},#{inOutFlag},#{rate});
     </insert>
 
-    <update id="updateRate" parameterType="java.lang.String" >
-        update `mybill`.`category` set rate = #{score} where category_code = #{categoryCode};
+    <update id="updateRate" parameterType="com.bill.pojo.Category" >
+        update `mybill`.`category` set rate = #{rate} where category_code = #{categoryCode};
     </update>
 
 </mapper>

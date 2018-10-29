@@ -5,7 +5,7 @@ public class Category {
     private String categoryCode;
     private String categoryName;
     private String inOutFlag;
-    private Long rate;
+    private String rate;
 
     public String getId() {
         return id;
@@ -39,11 +39,11 @@ public class Category {
         this.inOutFlag = inOutFlag;
     }
 
-    public Long getRate() {
+    public String getRate() {
         return rate;
     }
 
-    public void setRate(Long rate) {
+    public void setRate(String rate) {
         this.rate = rate;
     }
 
@@ -51,7 +51,7 @@ public class Category {
 
     }
 
-    public Category(String id, String categoryCode, String categoryName, String inOutFlag, Long rate) {
+    public Category(String id, String categoryCode, String categoryName, String inOutFlag, String rate) {
         this.id = id;
         this.categoryCode = categoryCode;
         this.categoryName = categoryName;
