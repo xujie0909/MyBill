@@ -65,8 +65,8 @@ public class BillServiceImpl implements BillService {
                 Double aDouble = RedisUtils.zScore(BillKeys.CategoryCount, category);
 
                 updateCategory.setRate(RedisUtils.zScore(BillKeys.CategoryCount, categoryEncode) + "");
-                updateCategory.setCategoryCode(categoryEncode);
-                categoryMapper.updateRate(updateCategory);
+                updateCategory.setCategoryCode(categoryEncode);categoryMapper.updateRate(updateCategory);
+
             }
         }
 
