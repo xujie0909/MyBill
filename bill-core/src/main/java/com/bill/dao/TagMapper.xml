@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bill.dao.TagMapper">
+
+    <insert id="addTag" parameterType="com.bill.dao.TagMapper">
+        INSERT INTO `mybill`.`tags` (`tname`,`tcount`)
+        VALUES
+	    (#{tnmae},#{tcount});
+    </insert>
+
+    <update id="updateTcount" parameterType="com.bill.pojo.Tag" >
+        update `mybill`.`tags` set tcount = #{tcount} where tname = #{tname};
+    </update>
+
+    <select id="getAllTags" resultType="com.bill.pojo.Tag">
+        select tid,tname,tcount from `mybill`.`tags` order by tcount desc;
+    </select>
+
+    <select id="getTagsByTname" resultType="com.bill.pojo.Tag">
+        select tid,tname,tcount from `mybill`.`tags` where tname = #{tname};
+    </select>
+
+
+</mapper>

@@ -1,9 +1,8 @@
 package com.bill.system;
 
-import com.bill.common.BillKeys;
-import com.bill.common.utils.RedisUtils;
-import com.bill.dao.category.CategoryMapper;
-import com.bill.pojo.Category;
+import com.bill.common.utils.CacheUtils;
+import com.bill.dao.TagMapper;
+import com.bill.pojo.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +12,24 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import static com.bill.common.constant.TagKeys.TAGCOUNT;
+
 @Component
 public class doInit implements ApplicationListener<ContextRefreshedEvent> {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(doInit.class);
 
     @Autowired
-    private CategoryMapper categoryMapper;
+    private TagMapper tagMapper;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        LOGGER.info("======================开始加载redis 分类表......");
-        if(RedisUtils.zScard(BillKeys.CategoryCount) == 0){
-            List<Category> allCateGorys = categoryMapper.getAllCateGory();
-            for (Category cgy:allCateGorys) {
-                RedisUtils.zAdd(BillKeys.CategoryCount,cgy.getCategoryCode(),Double.parseDouble(cgy.getRate()));
-            }
+
+        LOGGER.info("初始化标签....");
+        List<Tag> allTags = tagMapper.getAllTags();
+        for (Tag tag : allTags) {
+            CacheUtils.add(TAGCOUNT + tag.getTname(),tag.getTcount());
         }
-        LOGGER.info("======================加载redis 分类表完毕！");
+        LOGGER.info("初始化标签完毕....");
     }
 }

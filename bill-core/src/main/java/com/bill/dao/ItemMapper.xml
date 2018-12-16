@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bill.dao.ItemMapper">
+
+
+    <select id="getItems" resultType="com.bill.pojo.Item">
+         select
+         *
+         from item;
+    </select>
+
+    <insert id="addItem" parameterType="com.bill.pojo.Item">
+        INSERT INTO `mybill`.`item` (`in_out`, `iname`,`itags`,`imoney`,`itype`,`ictime`)
+        VALUES(
+            #{inOut,jdbcType=VARCHAR},
+            #{iname,jdbcType=VARCHAR},
+            #{itags,jdbcType=VARCHAR},
+            #{imoney,jdbcType=DECIMAL},
+            #{itype,jdbcType=VARCHAR},
+            #{ictime,jdbcType=DATE});
+    </insert>
+
+    <update id="updateItem" parameterType="com.bill.pojo.Item">
+        UPDATE `mybill`.`item`
+        SET
+        `in_out` = #{inOut,jdbcType=VARCHAR},
+        `iname` = #{iname,jdbcType=VARCHAR},
+        `itag` = #{itag,jdbcType=VARCHAR},
+        `imoney` = #{imoney,jdbcType=DECIMAL},
+        `itype` = #{itype,jdbcType=VARCHAR},
+        WHERE
+	    `id` = #{id,jdbcType=SMALLINT};
+    </update>
+</mapper>

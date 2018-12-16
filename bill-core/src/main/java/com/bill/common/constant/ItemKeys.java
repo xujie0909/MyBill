@@ -1,6 +1,6 @@
-package com.bill.common;
+package com.bill.common.constant;
 
-public class BillKeys {
+public class ItemKeys {
 
     //收支标记
     public static final String IN = "1";  //收入

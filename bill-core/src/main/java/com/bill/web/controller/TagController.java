@@ -1,6 +1,6 @@
 package com.bill.web.controller;
 
-import com.bill.service.categoryService.CategoryService;
+import com.bill.service.TagService.TagService;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,25 +13,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequestMapping("/category")
+@RequestMapping("/tag")
 @Controller
-public class CategoryController {
+public class TagController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TagController.class);
 
     @Autowired
-    private CategoryService categoryService;
+    private TagService tagService;
 
-    @RequestMapping(value="/highFrequencyCategory",method = RequestMethod.GET)
+    @RequestMapping(value = "/highFrequencyTag", method = RequestMethod.GET)
     @ResponseBody
-    public List<String> getHighFrequencyCategory() {
+    public List<String> getHighFrequencyTag() {
         List<String> highFrequencyCategory = null;
-        try {
-            highFrequencyCategory = categoryService.getHighFrequencyCategory();
-        } catch (Exception e) {
-            LOGGER.info("getHighFrequencyCategory occured a error!");
-        }
-        if(highFrequencyCategory == null){
+        highFrequencyCategory = tagService.getHighFrequencyTags();
+
+        if (highFrequencyCategory == null) {
             ArrayList<String> returnList = Lists.newArrayList();
             returnList.add("啥也木有");
             return returnList;

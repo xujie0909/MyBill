@@ -1,7 +1,7 @@
 package com.bill.web.controller;
 
-import com.bill.pojo.StreamMoney;
-import com.bill.service.billService.BillService;
+import com.bill.pojo.Item;
+import com.bill.service.itemService.ItemService;
 import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,18 +15,18 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
-@RequestMapping("/bill")
-public class BillController {
+@RequestMapping("/item")
+public class ItemController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BillController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ItemController.class);
 
     @Autowired
-    private BillService billService;
+    private ItemService itemService;
 
-    @RequestMapping(value = "/bill",method = RequestMethod.GET)
+    @RequestMapping(value = "/item",method = RequestMethod.GET)
     @ResponseBody
-    public HashMap<String, Object> getbill(){
-        List<StreamMoney> all = billService.getBill();
+    public HashMap<String, Object> getItems(){
+        List<Item> all = itemService.getItems();
         HashMap<String, Object> returnData = Maps.newHashMap();
         returnData.put("draw",1);
         returnData.put("recordsTotal",all.size());
@@ -35,9 +35,12 @@ public class BillController {
         return returnData;
     }
 
-    @RequestMapping(value = "/bill",method = RequestMethod.POST)
-    public String addBill(StreamMoney  streamOfMoney) throws Exception{
-        billService.addBill(streamOfMoney);
+    @RequestMapping(value = "/item",method = RequestMethod.POST)
+    public String addBill(Item item) throws Exception{
+        if(item == null){
+            return "error";
+        }
+        itemService.addItem(item);
         return "index";
     }
 }
