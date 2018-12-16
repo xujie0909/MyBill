@@ -1,7 +1,5 @@
 //常量
 var errmsg_form = "表单未填写完整，请重新填写";
-// var errmsg_getCagegory = "请求ajax出错了!";
-// var requestMethod = "";
 
 //初始化方法入口
 $(function () {
@@ -10,7 +8,6 @@ $(function () {
 
 //页面初始化
 function init() {
-
     //事件绑定
     eventBind();
     //初始化事件
