@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,21 +26,34 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
-    @RequestMapping(value = "/item",method = RequestMethod.GET)
+    @RequestMapping(value = "/itemDetail.do", method = RequestMethod.GET)
     @ResponseBody
-    public HashMap<String, Object> getItems(){
+    public HashMap<String, Object> getItems() {
         List<Item> all = itemService.getItems();
+        if (all.size() == 0) {
+
+            Item item = new Item();
+            item.setIctime(new Date(System.currentTimeMillis()));
+            item.setImoney(new BigDecimal(0));
+            item.setIname("暂无");
+            item.setInOut("暂无");
+            item.setTags("暂无");
+            item.setItype("暂无");
+            all.add(item);
+        }
         HashMap<String, Object> returnData = Maps.newHashMap();
-        returnData.put("draw",1);
-        returnData.put("recordsTotal",all.size());
-        returnData.put("recordsFiltered",all.size());
-        returnData.put("data",all);
+        returnData.put("draw", 1);
+        returnData.put("recordsTotal", all.size());
+        returnData.put("recordsFiltered", all.size());
+        returnData.put("data", all);
+        LOGGER.info("return data is {}", returnData);
+
         return returnData;
     }
 
-    @RequestMapping(value = "/item",method = RequestMethod.POST)
-    public String addBill(Item item) throws Exception{
-        if(item == null){
+    @RequestMapping(value = "/item", method = RequestMethod.POST)
+    public String addBill(Item item) throws Exception {
+        if (item == null) {
             return "error";
         }
         itemService.addItem(item);

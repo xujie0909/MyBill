@@ -188,12 +188,12 @@
                 <thead>
                 <tr>
                     <%--<td>id</td>--%>
-                    <td>事件</td>
-                    <td>收/支</td>
-                    <td>名称</td>
-                    <td>标签</td>
-                    <td>金额</td>
-                    <td>支付方式</td>
+                    <th>事件</th>
+                    <th>收/支</th>
+                    <th>名称</th>
+                    <th>标签</th>
+                    <th>金额</th>
+                    <th>支付方式</th>
                 </tr>
                 </thead>
             </table>
